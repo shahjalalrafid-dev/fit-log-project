@@ -20,7 +20,7 @@ const Navbar = () => {
                     </Link>
 
                     <div>
-                        <Link href='/' >
+                        <Link href='/allplans' >
                             <button className="px-4 py-1.5 text-lightgreen font-semibold font-inter bg-theme rounded-full cursor-pointer text-[12px] ">Workouts</button>
 
                         </Link>
