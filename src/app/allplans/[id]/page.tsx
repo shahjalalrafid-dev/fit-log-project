@@ -1,6 +1,9 @@
 // import Image from 'next/image'
 import { ILibrary } from '@/types/LibraryType';
+import Image from 'next/image';
 import React from 'react'
+import { FaRegCalendarCheck } from "react-icons/fa6";
+import { FaRegBookmark } from "react-icons/fa";
 
 interface IAllPlanDetails {
     params: Promise<{
@@ -33,28 +36,71 @@ const PlanDetails = async ({params} : IAllPlanDetails ) => {
 
     return (
 
-        <section>
+        <section className='bg-maintheme opacity-95 px-5'>
             <div className='container mx-auto'>
-                <div className='grid grid-cols-2'>
+                <div className='grid grid-cols-2 gap-14'>
 
                     <div>
-                        {/* <Image src={ } alt='' width={ } height={ } className='' ></Image> */}
+                        <Image src={item.image} alt='Image' width={300} height={300} className='w-full object-cover rounded-2xl' ></Image>
+                        
                     </div>
                     <div>
                         <h3 className='font-bold text-white font-oswald text-4xl' >{item.name}</h3>
-                        <p className='text-offwhite font-inter text-base'>hello</p>
-                        <div className='flex gap-2 mt-6 mb-3'>
-                            <button className="bg-lightgreen text-black py-0.5 px-2.5 font-inter font-bold rounded-full"></button>
-                            <button className="bg-lightgreen text-black py-0.5 px-2.5 font-inter font-bold rounded-full"></button>
+                        <p className='text-offwhite font-inter text-base mt-4 mb-10'>{item.description}</p>
+                        <div className='flex gap-2 mt-6 mb-7'>
+                            <button className="bg-lightgreen text-black py-0.5 px-2.5 font-inter font-bold rounded-full">{item.muscleGroups[0]}</button>
+                            {
+                                item.muscleGroups[1] && (
+                                    <button className="bg-lightgreen text-black py-0.5 px-2.5 font-inter font-bold rounded-full">{item.muscleGroups[1]}</button>
+                                )
+                            }
+                            
 
                         </div>
+                        <table className='bg-[#151922] text-offwhite font-inter text-[12px] w-full rounded-2xl '>
+                            <tr className=' border-b border-[#1E2330]'>
+                                <td  className='font-bold tracking-wider pl-6 py-4'>EQUIPMENT</td>
+                                <td className='text-right pr-6 py-4 font-inter'>{item.equipment}</td>
+                            </tr>
+                            <tr className=' border-b border-[#1E2330]'>
+                                <td  className='font-bold tracking-wider pl-6 py-4'>DIFFICULTY</td>
+                                <td className='text-right pr-6 py-4 font-inter'>{item.difficulty}</td>
+                            </tr>
+                            <tr className=' border-b border-[#1E2330]'>
+                                <td  className='font-bold tracking-wider pl-6 py-4'>EQUIPMENT</td>
+                                <td className='text-right pr-6 py-4 font-inter'>{item.equipment}</td>
+                            </tr>
+                            <tr className=' border-b border-[#1E2330]'>
+                                <td  className='font-bold tracking-wider pl-6 py-4'>REPS</td>
+                                <td className='text-right pr-6 py-4 font-inter'>{item.reps}</td>
+                            </tr>
+                            <tr className=' border-b border-[#1E2330]'>
+                                <td  className='font-bold tracking-wider pl-6 py-4'>DURATION</td>
+                                <td className='text-right pr-6 py-4 font-inter'>{item.duration}</td>
+                            </tr>
+                            <tr className=' border-b border-[#1E2330]'>
+                                <td  className='font-bold tracking-wider pl-6 py-4'>CALORIES</td>
+                                <td className='text-right pr-6 py-4 font-inter'>{item.caloriesBurned}</td>
+                            </tr>
+                            <tr className=' border-b border-[#1E2330]'>
+                                <td  className='font-bold tracking-wider pl-6 py-4'>RATING</td>
+                                <td className='text-right pr-6 py-4 font-inter'>{item.rating}</td>
+                            </tr>
+                        </table>
 
-                        <h4 className='text-base font-extrabold'>Instructions</h4>
-                        <p text-offwhite font-inter text-base>Lie on the bench with eyes under the bar and feet planted.</p>
-                        <p text-offwhite font-inter text-base>Lie on the bench with eyes under the bar and feet planted.</p>
-                        <p text-offwhite font-inter text-base>Lie on the bench with eyes under the bar and feet planted.</p>
-                        <p text-offwhite font-inter text-base>Lie on the bench with eyes under the bar and feet planted.</p>
-                        <p text-offwhite font-inter text-base>Lie on the bench with eyes under the bar and feet planted.</p>
+                        <h4 className='text-base font-extrabold text-white font-inter mt-8 mb-4'>INSTRUCTIONS</h4>
+                        <ol className='list-decimal list-inside font-inter space-y-3' >
+                            <li className='text-[#D1D5DB]'>{item.instructions[0]}</li>
+                            <li className='text-[#D1D5DB]'>{item.instructions[1]}</li>
+                            <li className='text-[#D1D5DB]'>{item.instructions[2]}</li>
+                            <li className='text-[#D1D5DB]'>{item.instructions[3]}</li>
+                          
+                        </ol>
+                        <div className='flex gap-4' >
+                            <button className='mt-7 px-6 py-3 bg-lightgreen text-black font-inter font-bold text-[12px] rounded-md cursor-pointer flex gap-1 items-center'> <FaRegCalendarCheck className='text-[12px]' /> Add to today's plan</button>
+                            <button className='mt-7 px-6 py-3 bg-maintheme text-offwhite border border-[#374151] font-inter font-bold text-[12px] rounded-md cursor-pointer'> <FaRegBookmark className='inline-block' /> Save for later</button>
+                        </div>
+                        
 
                     </div>
 
