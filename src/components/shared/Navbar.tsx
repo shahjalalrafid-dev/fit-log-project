@@ -6,7 +6,7 @@ import Link from 'next/link'
 const Navbar = () => {
     return (
         <nav className='bg-maintheme opacity-95'>
-            <section className='container mx-auto py-6.5 px-5'>
+            <section className='container mx-auto pt-6.5 pb-18.5 px-5'>
                 <div className='flex justify-between items-center'>
                     <Link href='/' >
 
