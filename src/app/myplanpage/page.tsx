@@ -1,7 +1,14 @@
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React from 'react'
+'use client'
+import TodaysPlanCard from '@/components/shared/TodaysPlanCard';
+import { PlanContextValue } from '@/context/PlanContext'
+import React, { useContext } from 'react'
 
 const MyPlanPage = () => {
+
+
+  const {plan} = useContext(PlanContextValue);
+
+
   return (
     <section className='bg-maintheme opacity-95 '>
       <div className='container mx-auto px-5'>
@@ -49,14 +56,18 @@ const MyPlanPage = () => {
 
           </div>
         </div>
-        <div className='bg-[#101216] border border-[#282A2D] rounded-2xl py-24.5'>
+        {
+          plan.length > 0 ? plan.map((item, index) => <TodaysPlanCard key={index} item = {item} /> ) :  <div className='bg-[#101216] border border-[#282A2D] rounded-2xl py-24.5'>
           <div className='text-center'>
             <h4 className='uppercase font-oswald font-bold text-xl text-white'>Nothing Here Yet</h4>
             <p className='text-offwhite font-inter text-[14px] mt-2'>Browse the library and add a lift to get today moving.</p>
-            <button className='mt-6 px-6 py-3 bg-lightgreen text-black font-inter font-bold text-[12px] rounded-full uppercase'>Go to Workouts</button>
+            <button className='mt-6 px-6 py-3 bg-lightgreen text-black font-inter font-bold text-[12px] rounded-full cursor-pointer'>Go to Workouts</button>
           </div>
 
         </div>
+        }
+
+        
 
 
       </div>
