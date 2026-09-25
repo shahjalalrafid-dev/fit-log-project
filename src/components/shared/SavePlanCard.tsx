@@ -6,6 +6,7 @@ import { CiStar } from 'react-icons/ci'
 import { FaFireFlameCurved } from 'react-icons/fa6'
 import { GoClock } from 'react-icons/go'
 import { RxCross1 } from 'react-icons/rx'
+import RemoveButton from './RemoveButton'
 
 const SavePlanCard = ({ item }: { item: ILibrary }) => {
     return (
@@ -40,7 +41,7 @@ const SavePlanCard = ({ item }: { item: ILibrary }) => {
                     <button className='text-white px-4.5 py-2.5 border border-offwhite text-[12px] bg-[#14171E] rounded-full cursor-pointer'>View Details</button>
                 </Link>
 
-                <RxCross1 className='text-offwhite cursor-pointer' />
+                <RemoveButton item = {item} />
 
             </div>
 

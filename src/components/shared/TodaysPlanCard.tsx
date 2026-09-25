@@ -6,6 +6,8 @@ import { CiStar } from 'react-icons/ci'
 import { FaCheck, FaFireFlameCurved } from 'react-icons/fa6'
 import { GoClock } from 'react-icons/go'
 import { RxCross1 } from 'react-icons/rx'
+import RemoveButton from './RemoveButton'
+import RemoveTodaysButton from './RemoveTodaysButton'
 
 const TodaysPlanCard = ({ item }: { item: ILibrary }) => {
     return (
@@ -41,7 +43,7 @@ const TodaysPlanCard = ({ item }: { item: ILibrary }) => {
                 </Link>
                 
                 <button className='px-6 py-3 bg-lightgreen text-black font-inter font-bold text-[12px] rounded-full cursor-pointer flex gap-1 items-center' > <FaCheck className='text-[12px]' /> Mark as Done</button>
-                <RxCross1 className='text-offwhite cursor-pointer' />
+                <RemoveTodaysButton item = {item} />
 
             </div>
 

@@ -2,6 +2,7 @@
 import SavePlanCard from '@/components/shared/SavePlanCard';
 import TodaysPlanCard from '@/components/shared/TodaysPlanCard';
 import { PlanContextValue } from '@/context/PlanContext'
+import { ILibrary } from '@/types/LibraryType';
 import React, { useContext, useState } from 'react'
 
 const MyPlanPage = () => {
@@ -10,6 +11,22 @@ const MyPlanPage = () => {
   const { plan, save } = useContext(PlanContextValue);
 
   const [click, setClick] = useState(false);
+
+  const [sortBy, setSortBy] = useState< "pick" | "duration" | "calories" | "rating">("pick");
+  const sortPlans = (items: ILibrary[]) => {
+    const sortedPlans = [...items];
+    if(sortBy === "rating"){
+      sortedPlans.sort((a,b) => b.rating - a.rating)
+    }else if (sortBy === "calories"){
+      sortedPlans.sort((a,b) => b.caloriesBurned - a.caloriesBurned);
+    }else {
+      sortedPlans.sort((a,b) => b.duration - a.duration);
+    }
+    return sortedPlans;
+
+  }
+  const sortedTodayPlans = sortPlans(plan);
+  const sortedSavePlans = sortPlans(save);
 
   const handleSaveButton = () => {
       setClick(true);
@@ -35,11 +52,16 @@ const MyPlanPage = () => {
             </div>
             <div>
               <p className='text-offwhite font-inter text-[12px]'>Minutes</p>
-              <h4 className='font-oswald font-bold text-4xl text-white'>{plan.reduce((sum, item) => sum + item.duration, 0)}</h4>
+              {click ? <h4 className='font-oswald font-bold text-4xl text-white'>{save.reduce((sum, item) => sum + item.duration, 0)}</h4> : <h4 className='font-oswald font-bold text-4xl text-white'>{plan.reduce((sum, item) => sum + item.duration, 0)}</h4>
+              }
+              
             </div>
             <div>
               <p className='text-offwhite font-inter text-[12px]'>Calories</p>
-              <h4 className='font-oswald font-bold text-4xl text-white'>{plan.reduce((sum, item) => sum + item.caloriesBurned , 0 )}</h4>
+              {
+                click ? <h4 className='font-oswald font-bold text-4xl text-white'>{save.reduce((sum, item) => sum + item.caloriesBurned , 0 )}</h4> : <h4 className='font-oswald font-bold text-4xl text-white'>{plan.reduce((sum, item) => sum + item.caloriesBurned , 0 )}</h4>
+              }
+              
             </div>
 
           </div>
@@ -53,7 +75,7 @@ const MyPlanPage = () => {
             <div className="tab-content mt-6">
 
               {
-                plan.length > 0 ? plan.map((item, index) => <TodaysPlanCard key={index} item={item} />) : <div className='bg-[#101216] border border-[#282A2D] rounded-2xl py-24.5'>
+                sortedTodayPlans.length > 0 ? sortedTodayPlans.map((item, index) => <TodaysPlanCard key={index} item={item} />) : <div className='bg-[#101216] border border-[#282A2D] rounded-2xl py-24.5'>
                   <div className='text-center'>
                     <h4 className='uppercase font-oswald font-bold text-xl text-white'>Nothing Here Yet</h4>
                     <p className='text-offwhite font-inter text-[14px] mt-2'>Browse the library and add a lift to get today moving.</p>
@@ -70,7 +92,7 @@ const MyPlanPage = () => {
             <div className="tab-content mt-6">
 
               {
-                save.length > 0 ? save.map((item, index) => <SavePlanCard key={index} item={item} />) : <div className='bg-[#101216] border border-[#282A2D] rounded-2xl py-24.5'>
+                sortedSavePlans.length > 0 ? sortedSavePlans.map((item, index) => <SavePlanCard key={index} item={item} />) : <div className='bg-[#101216] border border-[#282A2D] rounded-2xl py-24.5'>
                   <div className='text-center'>
                     <h4 className='uppercase font-oswald font-bold text-xl text-white'>Nothing Here Yet</h4>
                     <p className='text-offwhite font-inter text-[14px] mt-2'>Browse the library and add a lift to get today moving.</p>
@@ -84,11 +106,11 @@ const MyPlanPage = () => {
             <div className='flex items-center gap-x-2 ml-auto'>
               <p className='text-offwhite font-inter text-[12px]'>Sort By</p>
               <div>
-                <select defaultValue="Pick a font" className="select select-ghost bg-[#1f242D] text-offwhite outline-none font-inter text-[12px]">
-
-                  <option>Durartion</option>
-                  <option>Calories</option>
-                  <option>Rating</option>
+                <select value={sortBy} onChange={(e) => setSortBy(e.target.value as "duration" | "calories" | "rating" | "pick" )} className="select select-ghost bg-[#1f242D] text-offwhite outline-none font-inter text-[12px]" >
+                  <option disabled value= {"pick"}>Pick anyone</option>
+                  <option value= {"duration"} >Durartion</option>
+                  <option value={"calories"} >Calories</option>
+                  <option value={"rating"} >Rating</option>
                 </select>
               </div>
 
