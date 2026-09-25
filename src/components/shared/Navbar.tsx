@@ -2,8 +2,16 @@
 import LogoImage from '@/assets/logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
+import PlanValue from './PlanValue'
+import SavedValue from './SavedValue'
 
 const Navbar = () => {
+
+    
+
+
+
+
     return (
         <nav className='bg-maintheme opacity-95'>
             <section className='container mx-auto pt-6.5 pb-18.5 px-5'>
@@ -32,28 +40,8 @@ const Navbar = () => {
                     </div>
                     <div className='flex gap-6'>
 
-                        <Link href='/myplanpage'>
-                            <div className='flex items-center gap-2'>
-                                <h6 className='text-[#D1D5DB] font-inter text-[12px]  '>Plan</h6>
-                                <div className='w-5 h-5 bg-lightgreen rounded-full flex justify-center items-center'>
-                                    <p className='font-inter font-bold'>0</p>
-
-                                </div>
-                            </div>
-
-                        </Link>
-                        <Link href='/myplanpage'>
-
-                            <div className='flex items-center gap-2'>
-                                <h6 className='font-inter text-[12px] text-offwhite '>Saved</h6>
-                                <div className='w-5 h-5 bg-lightgreen rounded-full flex justify-center items-center'>
-                                    <p className='font-inter font-bold'>0</p>
-
-                                </div>
-                            </div>
-
-
-                        </Link>
+                        <PlanValue />
+                        <SavedValue />
 
 
 

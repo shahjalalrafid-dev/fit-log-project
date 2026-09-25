@@ -4,6 +4,8 @@ import Image from 'next/image';
 import React from 'react'
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import { FaRegBookmark } from "react-icons/fa";
+import TodayButton from '@/components/buttonfunction/TodayButton';
+import SavedLaterButton from '@/components/buttonfunction/SavedLaterButton';
 
 interface IAllPlanDetails {
     params: Promise<{
@@ -11,13 +13,13 @@ interface IAllPlanDetails {
     }>
 }
 
-const getLibraryCard = async() => {
+const getLibraryCard = async () => {
 
     try {
         const response = await fetch('https://api.abcz.workers.dev/api/fitlog');
         const data = await response.json();
         return data;
-    }catch(error){
+    } catch (error) {
         console.log("Error Fetching Data", error);
         return [];
     }
@@ -26,9 +28,9 @@ const getLibraryCard = async() => {
 
 
 
-const PlanDetails = async ({params} : IAllPlanDetails ) => {
+const PlanDetails = async ({ params }: IAllPlanDetails) => {
 
-    const {id} = await params;
+    const { id } = await params;
 
     const libraryData = await getLibraryCard();
 
@@ -42,7 +44,7 @@ const PlanDetails = async ({params} : IAllPlanDetails ) => {
 
                     <div>
                         <Image src={item.image} alt='Image' width={300} height={300} className='w-full object-cover rounded-2xl' ></Image>
-                        
+
                     </div>
                     <div>
                         <h3 className='font-bold text-white font-oswald text-4xl' >{item.name}</h3>
@@ -54,38 +56,41 @@ const PlanDetails = async ({params} : IAllPlanDetails ) => {
                                     <button className="bg-lightgreen text-black py-0.5 px-2.5 font-inter font-bold rounded-full">{item.muscleGroups[1]}</button>
                                 )
                             }
-                            
+
 
                         </div>
                         <table className='bg-[#151922] text-offwhite font-inter text-[12px] w-full rounded-2xl '>
-                            <tr className=' border-b border-[#1E2330]'>
-                                <td  className='font-bold tracking-wider pl-6 py-4'>EQUIPMENT</td>
-                                <td className='text-right pr-6 py-4 font-inter'>{item.equipment}</td>
-                            </tr>
-                            <tr className=' border-b border-[#1E2330]'>
-                                <td  className='font-bold tracking-wider pl-6 py-4'>DIFFICULTY</td>
-                                <td className='text-right pr-6 py-4 font-inter'>{item.difficulty}</td>
-                            </tr>
-                            <tr className=' border-b border-[#1E2330]'>
-                                <td  className='font-bold tracking-wider pl-6 py-4'>EQUIPMENT</td>
-                                <td className='text-right pr-6 py-4 font-inter'>{item.equipment}</td>
-                            </tr>
-                            <tr className=' border-b border-[#1E2330]'>
-                                <td  className='font-bold tracking-wider pl-6 py-4'>REPS</td>
-                                <td className='text-right pr-6 py-4 font-inter'>{item.reps}</td>
-                            </tr>
-                            <tr className=' border-b border-[#1E2330]'>
-                                <td  className='font-bold tracking-wider pl-6 py-4'>DURATION</td>
-                                <td className='text-right pr-6 py-4 font-inter'>{item.duration}</td>
-                            </tr>
-                            <tr className=' border-b border-[#1E2330]'>
-                                <td  className='font-bold tracking-wider pl-6 py-4'>CALORIES</td>
-                                <td className='text-right pr-6 py-4 font-inter'>{item.caloriesBurned}</td>
-                            </tr>
-                            <tr className=' border-b border-[#1E2330]'>
-                                <td  className='font-bold tracking-wider pl-6 py-4'>RATING</td>
-                                <td className='text-right pr-6 py-4 font-inter'>{item.rating}</td>
-                            </tr>
+                            <tbody>
+                                <tr className=' border-b border-[#1E2330]'>
+                                    <td className='font-bold tracking-wider pl-6 py-4'>EQUIPMENT</td>
+                                    <td className='text-right pr-6 py-4 font-inter'>{item.equipment}</td>
+                                </tr>
+                                <tr className=' border-b border-[#1E2330]'>
+                                    <td className='font-bold tracking-wider pl-6 py-4'>DIFFICULTY</td>
+                                    <td className='text-right pr-6 py-4 font-inter'>{item.difficulty}</td>
+                                </tr>
+                                <tr className=' border-b border-[#1E2330]'>
+                                    <td className='font-bold tracking-wider pl-6 py-4'>EQUIPMENT</td>
+                                    <td className='text-right pr-6 py-4 font-inter'>{item.equipment}</td>
+                                </tr>
+                                <tr className=' border-b border-[#1E2330]'>
+                                    <td className='font-bold tracking-wider pl-6 py-4'>REPS</td>
+                                    <td className='text-right pr-6 py-4 font-inter'>{item.reps}</td>
+                                </tr>
+                                <tr className=' border-b border-[#1E2330]'>
+                                    <td className='font-bold tracking-wider pl-6 py-4'>DURATION</td>
+                                    <td className='text-right pr-6 py-4 font-inter'>{item.duration}</td>
+                                </tr>
+                                <tr className=' border-b border-[#1E2330]'>
+                                    <td className='font-bold tracking-wider pl-6 py-4'>CALORIES</td>
+                                    <td className='text-right pr-6 py-4 font-inter'>{item.caloriesBurned}</td>
+                                </tr>
+                                <tr className=' border-b border-[#1E2330]'>
+                                    <td className='font-bold tracking-wider pl-6 py-4'>RATING</td>
+                                    <td className='text-right pr-6 py-4 font-inter'>{item.rating}</td>
+                                </tr>
+                            </tbody>
+
                         </table>
 
                         <h4 className='text-base font-extrabold text-white font-inter mt-8 mb-4'>INSTRUCTIONS</h4>
@@ -94,13 +99,13 @@ const PlanDetails = async ({params} : IAllPlanDetails ) => {
                             <li className='text-[#D1D5DB]'>{item.instructions[1]}</li>
                             <li className='text-[#D1D5DB]'>{item.instructions[2]}</li>
                             <li className='text-[#D1D5DB]'>{item.instructions[3]}</li>
-                          
+
                         </ol>
                         <div className='flex gap-4' >
-                            <button className='mt-7 px-6 py-3 bg-lightgreen text-black font-inter font-bold text-[12px] rounded-md cursor-pointer flex gap-1 items-center'> <FaRegCalendarCheck className='text-[12px]' /> Add to today's plan</button>
-                            <button className='mt-7 px-6 py-3 bg-maintheme text-offwhite border border-[#374151] font-inter font-bold text-[12px] rounded-md cursor-pointer'> <FaRegBookmark className='inline-block' /> Save for later</button>
+                            <TodayButton item = {item}  />
+                            <SavedLaterButton item = {item} />
                         </div>
-                        
+
 
                     </div>
 
