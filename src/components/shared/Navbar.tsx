@@ -1,14 +1,21 @@
-
+'use client'
 import LogoImage from '@/assets/logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import PlanValue from './PlanValue'
 import SavedValue from './SavedValue'
+import { useState } from 'react'
 
 const Navbar = () => {
 
+    const [active, setActive] = useState(false);
+    const handleWorkButton = () => {
+        setActive(true);
+    }
+    const handlePlanButton = () => {
+        setActive(false);
+    }
     
-
 
 
 
@@ -27,13 +34,13 @@ const Navbar = () => {
 
                     </Link>
 
-                    <div>
+                    <div className='flex gap-1'>
                         <Link href='/allplans' >
-                            <button className="px-4 py-1.5 text-lightgreen font-semibold font-inter bg-theme rounded-full cursor-pointer text-[12px] ">Workouts</button>
+                            <button className= {`px-4 py-1.5 text-lightgreen font-semibold font-inter bg-theme rounded-full cursor-pointer text-[12px] ${active ? "border border-lightgreen" : "" } `} onClick={handleWorkButton}>Workouts</button>
 
                         </Link>
                         <Link href='/myplanpage'>
-                            <button className='cursor-pointer py-1.5 px-4 font-inter font-medium text-[12px] text-offwhite '>My Plan</button>
+                            <button className = {`cursor-pointer py-1.5 px-4 font-inter font-medium text-[12px] text-offwhite ${active ? "" : "border border-lightgreen rounded-full" } `} onClick={handlePlanButton} >My Plan</button>
 
                         </Link>
 

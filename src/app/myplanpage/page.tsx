@@ -11,8 +11,9 @@ const MyPlanPage = () => {
   const { plan, save } = useContext(PlanContextValue);
 
   const [click, setClick] = useState(false);
+  
 
-  const [sortBy, setSortBy] = useState< "pick" | "duration" | "calories" | "rating">("pick");
+  const [sortBy, setSortBy] = useState< "pick" | "duration" | "calories" | "rating">("duration");
   const sortPlans = (items: ILibrary[]) => {
     const sortedPlans = [...items];
     if(sortBy === "rating"){
@@ -33,6 +34,9 @@ const MyPlanPage = () => {
   }
   const handleTodayButton = () => {
       setClick(false);
+      
+      
+      
   }
 
   return (
@@ -71,7 +75,7 @@ const MyPlanPage = () => {
         <div className='flex justify-between my-6'>
 
           <div className="tabs w-full bg-maintheme opacity-95 text-offwhite  p-1 gap-1 rounded-xl">
-            <input type="radio" name="my_tabs_6" className="tab text-offwhite bg-[#1f242D] px-9 py-2 rounded-lg font-inter font-bold" aria-label="Today's Plan" onClick={handleTodayButton} defaultChecked/>
+            <input type="radio" name="my_tabs_6" className= {`tab text-offwhite bg-[#1f242D] px-9 py-2 rounded-lg font-inter font-bold ${click ? ""  : 'border border-lightgreen' } `} aria-label="Today's Plan " onClick={handleTodayButton} defaultChecked/>
             <div className="tab-content mt-6">
 
               {
@@ -88,7 +92,7 @@ const MyPlanPage = () => {
 
             </div>
 
-            <input type="radio" name="my_tabs_6" className="tab text-white bg-[#1f242D] px-9 py-2 rounded-lg font-inter font-bold" aria-label="Saved" onClick={handleSaveButton}  />
+            <input type="radio" name="my_tabs_6" className={`tab text-white bg-[#1f242D] px-9 py-2 rounded-lg font-inter font-bold ${click ? 'border border-lightgreen' : "" } `}  aria-label="Saved" onClick={handleSaveButton}  />
             <div className="tab-content mt-6">
 
               {
