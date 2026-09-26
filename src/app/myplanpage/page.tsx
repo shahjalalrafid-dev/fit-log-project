@@ -45,7 +45,7 @@ const MyPlanPage = () => {
       <div className='container mx-auto px-5'>
 
         <h2 className='font-oswald font-bold text-3xl text-white'>MY PLAN</h2>
-        <p className='text-offwhite font-inter text-[14px]'>Cap of five lifts for today. Finish them, then load more.</p>
+        <p className='text-offwhite font-inter text-[14px] mt-2 mb-6'>Cap of five lifts for today. Finish them, then load more.</p>
         <div className='bg-[#13161D] px-6 py-8 rounded-2xl'>
           <div className='grid grid-cols-3 '>
             <div>
