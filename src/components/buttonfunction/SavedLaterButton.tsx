@@ -5,15 +5,23 @@ import React, { useContext } from 'react'
 import { FaRegBookmark } from 'react-icons/fa6'
 import { toast } from 'react-toastify';
 
-const SavedLaterButton = ({item}: {item:ILibrary}) => {
+const SavedLaterButton = ({ item }: { item: ILibrary }) => {
 
 
-    const {save, setSave} = useContext(PlanContextValue); 
-    
-        const handleSaveButton = () => {
-            setSave([...save, item]);
-            toast.success(`You have Added ${item.name} for saved plan`);
-        }
+  const { save, setSave } = useContext(PlanContextValue);
+
+  const handleSaveButton = () => {
+
+    const duplicate = save.find((article: ILibrary) => article.id === item.id);
+    if (duplicate) {
+      setSave([...save]);
+      toast.error(`You have already added it for saved plan`);
+    } else {
+      setSave([...save, item]);
+      toast.success(`You have Added ${item.name} for saved plan`);
+    }
+
+  }
 
 
   return (

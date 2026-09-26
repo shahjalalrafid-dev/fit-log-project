@@ -10,8 +10,17 @@ const TodayButton = ({item} : {item:ILibrary}) => {
     const {plan, setPlan} = useContext(PlanContextValue); 
 
     const handleToadayButton = () => {
-        setPlan([...plan, item]);
-        toast.success(`You have Added ${item.name} for today's plan`);
+        
+        
+        const duplicate =  plan.find((article : ILibrary)  => article.id === item.id);
+        if (duplicate){
+          setPlan([...plan]);
+          toast.error(`You have already added it for today's plan`);
+        }else {
+            setPlan([...plan, item]);
+            toast.success(`You have Added ${item.name} for today's plan`);
+        }
+        
     }
 
 
