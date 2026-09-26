@@ -8,6 +8,7 @@ import { GoClock } from 'react-icons/go'
 import { RxCross1 } from 'react-icons/rx'
 import RemoveButton from './RemoveButton'
 import RemoveTodaysButton from './RemoveTodaysButton'
+import MarkAsDoneButton from './MarkAsDoneButton'
 
 const TodaysPlanCard = ({ item }: { item: ILibrary }) => {
     return (
@@ -42,7 +43,7 @@ const TodaysPlanCard = ({ item }: { item: ILibrary }) => {
                     <button className='text-white px-4.5 py-2.5 border border-offwhite text-[12px] bg-[#14171E] rounded-full cursor-pointer'>View Details</button>
                 </Link>
                 
-                <button className='px-6 py-3 bg-lightgreen text-black font-inter font-bold text-[12px] rounded-full cursor-pointer flex gap-1 items-center' > <FaCheck className='text-[12px]' /> Mark as Done</button>
+                <MarkAsDoneButton />
                 <RemoveTodaysButton item = {item} />
 
             </div>
