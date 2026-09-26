@@ -3,6 +3,7 @@ import SavePlanCard from '@/components/shared/SavePlanCard';
 import TodaysPlanCard from '@/components/shared/TodaysPlanCard';
 import { PlanContextValue } from '@/context/PlanContext'
 import { ILibrary } from '@/types/LibraryType';
+import Link from 'next/link';
 import React, { useContext, useState } from 'react'
 
 const MyPlanPage = () => {
@@ -72,10 +73,10 @@ const MyPlanPage = () => {
 
 
         </div>
-        <div className='flex justify-between my-6'>
+        <div className='flex flex-col lg:flex-row lg:justify-between my-6'>
 
           <div className="tabs w-full bg-maintheme opacity-95 text-offwhite  p-1 gap-1 rounded-xl">
-            <input type="radio" name="my_tabs_6" className= {`tab text-offwhite bg-[#1f242D] px-9 py-2 rounded-lg font-inter font-bold ${click ? ""  : 'border border-lightgreen' } `} aria-label="Today's Plan " onClick={handleTodayButton} defaultChecked/>
+            <input type="radio" name="my_tabs_6" className= {`tab text-offwhite bg-[#1f242D] lg:px-9 px-3 py-2 rounded-lg font-inter font-bold ${click ? ""  : 'border border-lightgreen' } `} aria-label="Today's Plan " onClick={handleTodayButton} defaultChecked/>
             <div className="tab-content mt-6">
 
               {
@@ -83,7 +84,11 @@ const MyPlanPage = () => {
                   <div className='text-center'>
                     <h4 className='uppercase font-oswald font-bold text-xl text-white'>Nothing Here Yet</h4>
                     <p className='text-offwhite font-inter text-[14px] mt-2'>Browse the library and add a lift to get today moving.</p>
-                    <button className='mt-6 px-6 py-3 bg-lightgreen text-black font-inter font-bold text-[12px] rounded-full cursor-pointer'>Go to Workouts</button>
+                    <Link href= '/'>
+                      <button className='mt-6 px-6 py-3 bg-lightgreen text-black font-inter font-bold text-[12px] rounded-full cursor-pointer'>Go to Workouts</button>
+
+                    </Link>
+                    
                   </div>
 
                 </div>
@@ -92,7 +97,7 @@ const MyPlanPage = () => {
 
             </div>
 
-            <input type="radio" name="my_tabs_6" className={`tab text-white bg-[#1f242D] px-9 py-2 rounded-lg font-inter font-bold ${click ? 'border border-lightgreen' : "" } `}  aria-label="Saved" onClick={handleSaveButton}  />
+            <input type="radio" name="my_tabs_6" className={`tab text-white bg-[#1f242D] lg:px-9 px-4 py-2 rounded-lg font-inter font-bold ${click ? 'border border-lightgreen' : "" } `}  aria-label="Saved" onClick={handleSaveButton}  />
             <div className="tab-content mt-6">
 
               {
@@ -100,7 +105,11 @@ const MyPlanPage = () => {
                   <div className='text-center'>
                     <h4 className='uppercase font-oswald font-bold text-xl text-white'>Nothing Here Yet</h4>
                     <p className='text-offwhite font-inter text-[14px] mt-2'>Browse the library and add a lift to get today moving.</p>
-                    <button className='mt-6 px-6 py-3 bg-lightgreen text-black font-inter font-bold text-[12px] rounded-full cursor-pointer'>Go to Workouts</button>
+                    <Link href= '/' >
+                      <button className='mt-6 px-6 py-3 bg-lightgreen text-black font-inter font-bold text-[12px] rounded-full cursor-pointer'>Go to Workouts</button>
+                    
+                    </Link>
+                    
                   </div>
                 </div>
               }

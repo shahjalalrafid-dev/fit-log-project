@@ -2,8 +2,7 @@
 import { ILibrary } from '@/types/LibraryType';
 import Image from 'next/image';
 import React from 'react'
-import { FaRegCalendarCheck } from "react-icons/fa6";
-import { FaRegBookmark } from "react-icons/fa";
+
 import TodayButton from '@/components/buttonfunction/TodayButton';
 import SavedLaterButton from '@/components/buttonfunction/SavedLaterButton';
 
@@ -40,7 +39,7 @@ const PlanDetails = async ({ params }: IAllPlanDetails) => {
 
         <section className='bg-maintheme opacity-95 px-5'>
             <div className='container mx-auto'>
-                <div className='grid grid-cols-2 gap-14'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-14'>
 
                     <div>
                         <Image src={item.image} alt='Image' width={300} height={300} className='w-full object-cover rounded-2xl' ></Image>
